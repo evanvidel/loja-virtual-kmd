@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LojaVirtual">
-        <activity android:name=".MainActivity">
+        <activity android:name=".form.FormCadastroActivity"></activity>
+        <activity android:name=".form.FormLoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".SlidesActivity"
+            android:theme="@style/Theme.Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
