@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418326647640",
+    "project_id": "loja-virtual-fa20e",
+    "storage_bucket": "loja-virtual-fa20e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418326647640:android:a84854a9b8a18f6995cb2d",
+        "android_client_info": {
+          "package_name": "com.axweb.lojavirtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418326647640-qjqqhho6kik7feud0ggp1rg12q25d72a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxjoW1sdQ1fnJ3QOETYaaYGPa5TJvYa4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418326647640-qjqqhho6kik7feud0ggp1rg12q25d72a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
