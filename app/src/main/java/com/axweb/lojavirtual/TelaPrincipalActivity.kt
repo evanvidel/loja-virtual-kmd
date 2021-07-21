@@ -1,19 +1,22 @@
 package com.axweb.lojavirtual
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ui.AppBarConfiguration
 import com.axweb.lojavirtual.databinding.ActivityTelaPrincipalBinding
+import com.axweb.lojavirtual.form.FormLoginActivity
+import com.axweb.lojavirtual.fragments.ProdutosFragment
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.app_bar_tela_principal.*
 
-class TelaPrincipalActivity : AppCompatActivity() {
+class TelaPrincipalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityTelaPrincipalBinding
@@ -25,33 +28,64 @@ class TelaPrincipalActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarTelaPrincipal.toolbar)
+        val produtosFragment = ProdutosFragment()
+        val fragment = supportFragmentManager.beginTransaction()
+        fragment.replace(R.id.flame_container, produtosFragment)
+        fragment.commit()
 
-        binding.appBarTelaPrincipal.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-    }
+        val toggle = ActionBarDrawerToggle(
+            this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
 
+
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.nav_produtos) {
+
+            val produtosFragment = ProdutosFragment()
+            val fragment = supportFragmentManager.beginTransaction()
+            fragment.replace(R.id.flame_container, produtosFragment)
+            fragment.commit()
+
+        }else if(id == R.id.nav_cadastrar_produtos) {
+
+            val intent = Intent(this, CadastroProdutosActivity::class.java)
+            startActivity(intent)
+
+        }else if(id == R.id.nav_contato) {
+
+        }
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.tela_principal, menu)
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id = item.itemId
+
+        if (id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut()
+            backToFormLogin()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
+
+    private fun backToFormLogin() {
+        val intent = Intent(this, FormLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

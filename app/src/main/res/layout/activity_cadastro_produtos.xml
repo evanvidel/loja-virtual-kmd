@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    tools:context=".CadastroProdutosActivity">
+
+    <ImageView
+        android:id="@+id/foto_produto"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069"
+        app:srcCompat="@drawable/ic_key" />
+
+    <Button
+        android:id="@+id/bt_selecionar_foto"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:text=""
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/foto_produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/foto_produto"
+        app:layout_constraintTop_toTopOf="@+id/foto_produto"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/edit_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+        android:hint="Nome"
+        android:padding="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_produto"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <EditText
+        android:id="@+id/edit_preco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+        android:hint="Preço"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_nome"
+        app:layout_constraintVertical_bias="0.07" />
+
+    <Button
+        android:id="@+id/bt_cadastrar_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button_cadastro_produto"
+        android:padding="15dp"
+        android:text="Cadastrar Produto"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_preco"
+        app:layout_constraintVertical_bias="0.19999999"
+        tools:layout_editor_absoluteX="20dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

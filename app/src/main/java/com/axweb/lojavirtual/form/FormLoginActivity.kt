@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.axweb.lojavirtual.R
 import com.axweb.lojavirtual.TelaPrincipalActivity
@@ -15,8 +17,9 @@ class FormLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form_login)
-
         supportActionBar!!.hide()
+
+        checkLoggedInUser()
 
         text_tela_cadastro.setOnClickListener {
             val intent = Intent(this, FormCadastroActivity::class.java)
@@ -43,7 +46,8 @@ class FormLoginActivity : AppCompatActivity() {
         }else {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,senha).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    openMainScreen()
+                    frameL.visibility = View.VISIBLE
+                    Handler(Looper.getMainLooper()).postDelayed({openMainScreen()},3000)
                 }
             }.addOnFailureListener {
                 val snackbar = Snackbar.make(layout_login,"Erro ao logar usuário",Snackbar.LENGTH_INDEFINITE)
@@ -54,6 +58,14 @@ class FormLoginActivity : AppCompatActivity() {
             }
         }
     }
+    private fun checkLoggedInUser() {
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null) {
+            openMainScreen()
+        }
+    }
+
     private fun openMainScreen() {
         val intent = Intent(this, TelaPrincipalActivity::class.java)
         startActivity(intent)
